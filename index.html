@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal Print - Comunicação Visual | Fachadas ACM, Adesivos e Recortes de Precisão</title>
+    <meta name="description" content="Especialistas em fachadas ACM, adesivos personalizados, banners e recortes de precisão em metal e outros materiais. Comunicação visual completa em Jequié, BA.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Animações simplificadas para mobile */
+        .animate-glow {
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+            to { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Loading screen fade out */
+        .loading-fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+            pointer-events: none;
+        }
+        
+        /* Hover effects simplificados */
+        .hover-lift {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            max-height: 400px;
+        }
+        
+        /* Animações simplificadas */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Floating animation simplificada */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Grid pattern background */
+        .bg-grid-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2360a5fa' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Modal styles */
+        .modal-backdrop {
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        /* Success message animation */
+        .success-slide {
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* Admin styles */
+        .admin-hidden {
+            display: none !important;
+        }
+
+        .admin-visible {
+            display: block !important;
+        }
+
+        /* Line clamp */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hover-lift:hover {
+                transform: none;
+            }
+            
+            .animate-glow {
+                animation: none;
+            }
+            
+            .float {
+                animation: none;
+            }
+        }
+
+        /* Touch improvements */
+        button, a, [onclick] {
+            touch-action: manipulation;
+        }
+
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+            font-size: 16px;
+        }
+
+        /* File upload styles */
+        .file-upload-area {
+            border: 2px dashed rgba(59, 130, 246, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .file-upload-area:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .file-upload-area.dragover {
+            border-color: rgba(59, 130, 246, 0.8);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-blue-900 to-black flex items-center justify-center">
+        <div class="relative">
+            <div class="loading-spinner w-20 h-20 border-4 border-blue-500/30 border-t-blue-400 rounded-full"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <i data-lucide="zap" class="w-8 h-8 text-blue-400"></i>
+            </div>
+        </div>
+        <p class="absolute bottom-1/3 text-blue-300 font-medium tracking-wider">METAL PRINT</p>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
+        <div class="bg-slate-800/90 backdrop-blur-xl rounded-2xl p-8 w-full max-w-md mx-4 border border-blue-500/20">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                    <i data-lucide="lock" class="w-8 h-8 text-white"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">Área Administrativa</h2>
+                <p class="text-gray-300">Digite a senha para acessar o painel de controle</p>
+            </div>
+            
+            <form id="admin-login-form" class="space-y-4">
+                <div>
+                    <label for="admin-password" class="block text-white font-medium mb-2">Senha</label>
+                    <input 
+                        type="password" 
+                        id="admin-password" 
+                        class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+                
+                <div id="login-error" class="hidden bg-red-500/20 border border-red-500/30 rounded-xl p-3 text-red-300 text-sm">
+                    Senha incorreta. Tente novamente.
+                </div>
+                
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300">
+                    Entrar
+                </button>
+                
+                <button type="button" id="cancel-admin-login" class="w-full py-3 border border-gray-500/30 text-gray-300 font-medium rounded-xl hover:bg-gray-500/20 transition-all duration-300">
+                    Cancelar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-hidden fixed inset-0 z-40 bg-gradient-to-br from-slate-900 via-blue-900 to-black overflow-y-auto">
+        <div class="min-h-screen p-4">
+            <div class="max-w-7xl mx-auto">
+                <!-- Admin Header -->
+                <div class="mb-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
+                        <h1 class="text-2xl md:text-3xl font-bold text-white">Painel Administrativo - Metal Print</h1>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button id="save-all-content" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+                                <i data-lucide="save" class="w-4 h-4"></i>
+                                Salvar
+                            </button>
+                            <button id="preview-site" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                                Ver Site
+                            </button>
+                            <button id="logout-admin" class="px-4 py-2 border border-red-500/30 text-red-300 hover:bg-red-500/20 font-medium rounded-lg transition-colors text-sm">
+                                Sair
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="save-message" class="hidden bg-green-500/20 border border-green-500/30 rounded-xl p-3 text-green-300 mb-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            <span>Conteúdo salvo com sucesso!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Content Management -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <!-- Hero Section Management -->
+                        <div class="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20">
+                            <h2 class="text-xl font-bold text-white mb-4">Seção Principal (Hero)</h2>
+                            <p class="text-gray-300 mb-4">Edite a descrição principal do site</p>
+                            
+                            <div>
+                                <label for="hero-description" class="block text-white font-medium mb-2">Descrição Principal</label>
+                                <textarea 
+                                    id="hero-description" 
+                                    rows="3"
+                                    class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm resize-none"
+                                    placeholder="Digite a descrição principal..."
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- About Section Management -->
+                        <div class="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20">
+                            <h2 class="text-xl font-bold text-white mb-4">Seção Sobre</h2>
+                            <p class="text-gray-300 mb-4">Edite a descrição da empresa</p>
+                            
+                            <div>
+                                <label for="about-description" class="block text-white font-medium mb-2">Descrição da Empresa</label>
+                                <textarea 
+                                    id="about-description" 
+                                    rows="4"
+                                    class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm resize-none"
+                                    placeholder="Digite a descrição da empresa..."
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Management -->
+                        <div class="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white">Gerenciar Projetos</h2>
+                                    <p class="text-gray-300">Adicione, edite ou remova projetos do portfólio</p>
+                                </div>
+                                <button id="add-new-project" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 text-sm">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                    Novo Projeto
+                                </button>
+                            </div>
+                            
+                            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Portfolio items will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Sidebar -->
+                    <div class="space-y-6">
+                        <div class="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20">
+                            <h3 class="text-lg font-bold text-white mb-4">Ações Rápidas</h3>
+                            <div class="space-y-3">
+                                <button id="quick-preview" class="w-full px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 text-sm">
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                    Visualizar Site
+                                </button>
+                                <button id="quick-save" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 text-sm">
+                                    <i data-lucide="save" class="w-4 h-4"></i>
+                                    Salvar Tudo
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20">
+                            <h3 class="text-lg font-bold text-white mb-4">Estatísticas</h3>
+                            <div class="space-y-4">
+                                <div class="text-center">
+                                    <div id="portfolio-count" class="text-2xl font-bold text-blue-400">0</div>
+                                    <div class="text-sm text-gray-300">Projetos no Portfólio</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-400">6</div>
+                                    <div class="text-sm text-gray-300">Serviços Oferecidos</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Edit Modal -->
+    <div id="project-edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
+        <div class="bg-slate-800 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto mx-4 border border-blue-500/20">
+            <div class="flex items-center justify-between mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-white">Editar Projeto</h2>
+                <button id="close-project-modal" class="text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <form id="project-form" class="space-y-6">
+                <!-- Image Upload -->
+                <div>
+                    <label class="block text-white font-medium mb-2">Imagem do Projeto</label>
+                    <div class="file-upload-area relative h-48 bg-slate-700 rounded-lg overflow-hidden border-2 border-dashed border-blue-500/30 hover:border-blue-400/50 transition-colors cursor-pointer">
+                        <img id="project-image-preview" src="/placeholder.svg" alt="Preview" class="w-full h-full object-cover hidden">
+                        <div id="upload-placeholder" class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-lucide="upload" class="w-8 h-8 text-blue-400 mx-auto mb-2"></i>
+                                <p class="text-blue-300 font-medium">Clique para escolher uma imagem</p>
+                                <p class="text-gray-400 text-sm">ou arraste e solte aqui</p>
+                            </div>
+                        </div>
+                        <input type="file" id="project-image-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Basic Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="project-title" class="block text-white font-medium mb-2">Título</label>
+                        <input 
+                            type="text" 
+                            id="project-title" 
+                            class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm"
+                            placeholder="Nome do projeto"
+                            required
+                        >
+                    </div>
+                    <div>
+                        <label for="project-category" class="block text-white font-medium mb-2">Categoria</label>
+                        <input 
+                            type="text" 
+                            id="project-category" 
+                            class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm"
+                            placeholder="Ex: Fachadas ACM"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="project-description" class="block text-white font-medium mb-2">Descrição</label>
+                    <textarea 
+                        id="project-description" 
+                        rows="3"
+                        class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm resize-none"
+                        placeholder="Descrição detalhada do projeto"
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- Details -->
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <label class="block text-white font-medium">Especificações Técnicas</label>
+                        <button type="button" id="add-detail" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-1">
+                            <i data-lucide="plus" class="w-3 h-3"></i>
+                            Adicionar
+                        </button>
+                    </div>
+                    <div id="project-details" class="space-y-2">
+                        <!-- Details will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        <span id="save-project-text">Salvar Projeto</span>
+                    </button>
+                    <button type="button" id="cancel-project-edit" class="px-6 py-3 border border-gray-500/30 text-gray-300 hover:bg-gray-500/20 font-medium rounded-xl transition-colors">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-500">
+        <!-- Navigation -->
+        <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-3 cursor-pointer">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 p-0.5">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mOnVZVqEMtXfm5u3WujGpadTpMqfPZ.png" alt="Metal Print" class="w-full h-full rounded-full object-cover">
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-white tracking-wider">METAL PRINT</h1>
+                            <p class="text-xs text-blue-300 uppercase tracking-widest">Comunicação Visual</p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="#inicio" class="text-white hover:text-blue-300 transition-colors duration-300 font-medium">Início</a>
+                        <a href="#servicos" class="text-white hover:text-blue-300 transition-colors duration-300 font-medium">Serviços</a>
+                        <a href="#projetos" class="text-white hover:text-blue-300 transition-colors duration-300 font-medium">Projetos</a>
+                        <a href="#sobre" class="text-white hover:text-blue-300 transition-colors duration-300 font-medium">Sobre</a>
+                        <a href="#contato" class="text-white hover:text-blue-300 transition-colors duration-300 font-medium">Contato</a>
+                        <button id="admin-access-btn" class="text-gray-400 hover:text-blue-300 transition-colors duration-300 text-sm font-medium">Admin</button>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 text-white hover:text-blue-300 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="mobile-menu md:hidden bg-black/95 backdrop-blur-xl border-t border-blue-500/20">
+                    <nav class="py-4 space-y-2">
+                        <a href="#inicio" class="mobile-nav-link block px-4 py-3 text-white hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Início</a>
+                        <a href="#servicos" class="mobile-nav-link block px-4 py-3 text-white hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Serviços</a>
+                        <a href="#projetos" class="mobile-nav-link block px-4 py-3 text-white hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Projetos</a>
+                        <a href="#sobre" class="mobile-nav-link block px-4 py-3 text-white hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Sobre</a>
+                        <a href="#contato" class="mobile-nav-link block px-4 py-3 text-white hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Contato</a>
+                        <button id="mobile-admin-btn" class="block w-full text-left px-4 py-3 text-gray-400 hover:text-blue-300 hover:bg-blue-500/10 transition-all duration-300 rounded-lg mx-2">Admin</button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-blue-900 to-slate-900"></div>
+            <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+
+            <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+                <!-- Main Logo -->
+                <div class="mb-8 relative scale-in">
+                    <div class="w-32 h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mOnVZVqEMtXfm5u3WujGpadTpMqfPZ.png" alt="Metal Print" class="w-full h-full rounded-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="hero-title text-6xl md:text-8xl font-black mb-4 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent fade-in">
+                    METAL PRINT
+                </h1>
+
+                <!-- Subtitle -->
+                <div class="mb-6 fade-in">
+                    <p class="text-xl md:text-2xl text-blue-300 font-semibold tracking-widest uppercase">
+                        COMUNICAÇÃO VISUAL
+                    </p>
+                </div>
+
+                <!-- Description -->
+                <p id="hero-description-display" class="hero-description text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed fade-in">
+                    Transformamos fachadas com <span class="text-blue-400 font-semibold">ACM de alta qualidade</span>, 
+                    <span class="text-blue-400 font-semibold">adesivos personalizados</span> e
+                    <span class="text-blue-400 font-semibold"> recortes de precisão em metal e outros materiais</span>. Comunicação visual completa.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="hero-buttons flex flex-col sm:flex-row gap-6 justify-center items-center fade-in">
+                    <a href="#projetos" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-full shadow-2xl transition-all duration-300 flex items-center gap-2">
+                        Ver Projetos
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </a>
+
+                    <a href="#contato" class="px-8 py-4 border-2 border-blue-400 text-blue-400 hover:text-white font-bold rounded-full transition-all duration-300 hover:bg-blue-400">
+                        Solicitar Orçamento
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-slate-800 to-blue-600 bg-clip-text text-transparent">
+                        Nossos Serviços
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Comunicação visual completa: ACM, adesivos, banners e recortes em metal e outros materiais
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="shield" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Fachadas ACM</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Instalação completa de fachadas em ACM com acabamento perfeito e durabilidade garantida.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Material premium
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Resistente às intempéries
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Instalação profissional
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-green-600"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="sticker" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Adesivos Personalizados</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Adesivos para parede, vidro, veículos, decorativos e promocionais com impressão de alta qualidade.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Alta resolução
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Laminação protetora
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Aplicação em diversos materiais
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-purple-600"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="flag" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Banners e Faixas</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Banners promocionais, faixas publicitárias e displays para eventos e campanhas.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Material resistente
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Impressão digital
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Diversos tamanhos
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="key" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Chaveiros Personalizados</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Chaveiros em acrílico, metal e outros materiais com personalização completa para brindes e lembranças.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Diversos materiais
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Personalização total
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Acabamento premium
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-600 to-slate-700"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="zap" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Recortes de Precisão</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Recortes precisos em ACM, alumínio, metal e outros materiais com tecnologia CNC.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Tecnologia CNC
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Precisão milimétrica
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Diversos materiais
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card bg-white rounded-2xl p-8 shadow-xl transition-all duration-300 border border-gray-100 relative">
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center mb-6 shadow-lg">
+                            <i data-lucide="wrench" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Instalação e Montagem</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Serviço completo de instalação e montagem com equipe especializada.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Equipe especializada
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Garantia de qualidade
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-500">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                                Pós-venda
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="projetos" class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-black relative overflow-hidden">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
+                        Nossos Projetos
+                    </h2>
+                    <p class="text-xl text-blue-200 max-w-2xl mx-auto">
+                        Trabalhos executados com excelência e precisão
+                    </p>
+                </div>
+
+                <div id="portfolio-display" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio items will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Content -->
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-slate-800 to-blue-600 bg-clip-text text-transparent">
+                            Sobre a Metal Print
+                        </h2>
+
+                        <p id="about-description-display" class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Especializada em comunicação visual completa: fachadas ACM, adesivos personalizados, banners, chaveiros e recortes de precisão em metal e outros materiais. Oferecemos soluções completas desde o projeto até a instalação.
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md">
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Especialistas em comunicação visual há mais de 10 anos</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md">
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Equipamentos CNC e impressão de alta qualidade</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md">
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Trabalhos em metal e outros materiais</span>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md">
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-gray-700 font-medium">Garantia em todos os projetos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services Benefits -->
+                    <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl p-8 text-white shadow-2xl border border-blue-500/20">
+                        <h3 class="text-2xl font-bold mb-8 text-blue-300">
+                            Nossos Diferenciais
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-blue-400 pl-6 py-2">
+                                <h4 class="font-bold text-blue-300 mb-2">ACM Premium</h4>
+                                <p class="text-gray-300 leading-relaxed">Material de alta qualidade resistente às intempéries</p>
+                            </div>
+
+                            <div class="border-l-4 border-green-400 pl-6 py-2">
+                                <h4 class="font-bold text-green-300 mb-2">Adesivos Duráveis</h4>
+                                <p class="text-gray-300 leading-relaxed">Impressão digital de alta resolução com laminação protetora</p>
+                            </div>
+
+                            <div class="border-l-4 border-slate-400 pl-6 py-2">
+                                <h4 class="font-bold text-slate-300 mb-2">Metal e Outros Materiais</h4>
+                                <p class="text-gray-300 leading-relaxed">Trabalhamos com diversos materiais além do metal: acrílico, alumínio, PVC</p>
+                            </div>
+
+                            <div class="border-l-4 border-orange-400 pl-6 py-2">
+                                <h4 class="font-bold text-orange-300 mb-2">Personalização Total</h4>
+                                <p class="text-gray-300 leading-relaxed">Projetos únicos desenvolvidos especialmente para você</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato" class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-black relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
+                        Entre em Contato
+                    </h2>
+                    <p class="text-xl text-blue-200 max-w-2xl mx-auto">
+                        Solicite seu orçamento para comunicação visual completa!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4 p-6 glass-effect rounded-2xl border border-blue-500/20">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow-lg">
+                                <i data-lucide="phone" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2">Telefone</h3>
+                                <a href="tel:+5573998096203" class="text-blue-300 hover:text-blue-200 transition-colors duration-300">
+                                    (73) 99809-6203
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="flex items-start gap-4 p-6 glass-effect rounded-2xl border border-blue-500/20">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow-lg">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2">Endereço</h3>
+                                <p class="text-gray-300">Av. Governador Otávio Mangabeira, 769<br>Mandacaru - Jequié, BA</p>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start gap-4 p-6 glass-effect rounded-2xl border border-blue-500/20">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow-lg">
+                                <i data-lucide="mail" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2">Email</h3>
+                                <a href="mailto:metalprint8@gmail.com" class="text-blue-300 hover:text-blue-200 transition-colors duration-300">
+                                    metalprint8@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="flex items-start gap-4 p-6 glass-effect rounded-2xl border border-blue-500/20">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-600 to-slate-700 text-white flex items-center justify-center shadow-lg">
+                                <i data-lucide="clock" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2">Horário</h3>
+                                <p class="text-gray-300">Segunda a Sexta: 7h às 18h<br>Sábado: 7h às 12h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-effect rounded-3xl p-8 border border-blue-500/20">
+                        <!-- Success Message -->
+                        <div id="success-message" class="hidden mb-6 p-4 bg-green-500/20 border border-green-400/30 rounded-xl text-green-300 text-center backdrop-blur-sm success-slide">
+                            ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                        </div>
+
+                        <form id="contact-form" action="https://formspree.io/f/xpwlpnrk" method="POST" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-white font-medium mb-2">Nome *</label>
+                                    <input type="text" name="nome" required class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm" placeholder="Seu nome completo">
+                                </div>
+
+                                <div>
+                                    <label class="block text-white font-medium mb-2">Email *</label>
+                                    <input type="email" name="email" required class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm" placeholder="seu@email.com">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-white font-medium mb-2">Telefone *</label>
+                                    <input type="tel" name="telefone" required class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm" placeholder="(11) 99999-9999">
+                                </div>
+
+                                <div>
+                                    <label class="block text-white font-medium mb-2">Tipo de Projeto *</label>
+                                    <select name="tipo_projeto" required class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm">
+                                        <option value="" class="bg-slate-800">Selecione o tipo</option>
+                                        <option value="Fachada ACM Completa" class="bg-slate-800">Fachada ACM Completa</option>
+                                        <option value="Adesivos Personalizados" class="bg-slate-800">Adesivos Personalizados</option>
+                                        <option value="Banners e Faixas" class="bg-slate-800">Banners e Faixas</option>
+                                        <option value="Chaveiros Personalizados" class="bg-slate-800">Chaveiros Personalizados</option>
+                                        <option value="Recortes em Metal" class="bg-slate-800">Recortes em Metal</option>
+                                        <option value="Outros" class="bg-slate-800">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-white font-medium mb-2">Mensagem *</label>
+                                <textarea name="mensagem" required rows="4" class="w-full px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm resize-none" placeholder="Descreva seu projeto: tipo de material, tamanho, quantidade, local de aplicação, etc..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl shadow-2xl transition-all duration-300">
+                                Solicitar Orçamento
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gradient-to-br from-black to-slate-900 text-white py-16 border-t border-blue-500/20">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <!-- Brand -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 p-0.5">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mOnVZVqEMtXfm5u3WujGpadTpMqfPZ.png" alt="Metal Print" class="w-full h-full rounded-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-300">Metal Print</h3>
+                                <p class="text-sm text-gray-400 uppercase tracking-wider">Comunicação Visual</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 leading-relaxed">
+                            Comunicação visual completa: ACM, adesivos, banners, chaveiros e recortes em metal e outros materiais.
+                        </p>
+                    </div>
+
+                    <!-- Services -->
+                    <div>
+                        <h4 class="text-lg font-bold text-blue-300 mb-6">Serviços</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li>Fachadas ACM</li>
+                            <li>Adesivos Personalizados</li>
+                            <li>Banners e Faixas</li>
+                            <li>Chaveiros</li>
+                            <li>Recortes em Metal e Outros</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h4 class="text-lg font-bold text-blue-300 mb-6">Contato</h4>
+                        <div class="space-y-3 text-gray-400">
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4"></i>
+                                <a href="tel:+5573998096203" class="hover:text-blue-300 transition-colors">
+                                    (73) 99809-6203
+                                </a>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4"></i>
+                                <a href="mailto:metalprint8@gmail.com" class="hover:text-blue-300 transition-colors">
+                                    metalprint8@gmail.com
+                                </a>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                <span>Jequié, BA</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-blue-500/20 mt-12 pt-8 text-center">
+                    <p class="text-gray-400">© 2024 Metal Print. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Float Button -->
+        <a href="https://wa.me/5573998096203?text=Olá! Gostaria de solicitar um orçamento para comunicação visual." target="_blank" class="whatsapp-float bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </a>
+
+        <!-- Portfolio Modal -->
+        <div id="portfolio-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-backdrop">
+            <div class="relative max-w-4xl mx-4 bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20">
+                <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                
+                <div id="modal-content" class="p-8">
+                    <!-- Modal content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Admin password
+        const ADMIN_PASSWORD = "metalprint2024";
+
+        // Global state
+        let isAdminAuthenticated = false;
+        let currentEditingProject = null;
+        let siteContent = {
+            heroDescription: "Transformamos fachadas com ACM de alta qualidade, adesivos personalizados e recortes de precisão em metal e outros materiais. Comunicação visual completa.",
+            aboutDescription: "Especializada em comunicação visual completa: fachadas ACM, adesivos personalizados, banners, chaveiros e recortes de precisão em metal e outros materiais. Oferecemos soluções completas desde o projeto até a instalação.",
+            portfolioItems: [
+                {
+                    id: 1,
+                    title: "Adesivo Artístico Personalizado",
+                    category: "Adesivos Personalizados",
+                    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-w0dthMppjCRQZKuTGJgthfbxLJMYwc.png",
+                    description: "Adesivo personalizado aplicado diretamente na parede com design artístico exclusivo representando figura humana e globo terrestre em formato de escudo.",
+                    details: [
+                        "Material: Vinil adesivo premium",
+                        "Aplicação: Parede interna",
+                        "Técnica: Recorte eletrônico de precisão",
+                        "Durabilidade: 5+ anos"
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Comunicação Visual Farmácia",
+                    category: "Fachadas Comerciais",
+                    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VWuUEypYdCPJXGSJGVAXqriWXvV7k2.png",
+                    description: "Projeto completo de identidade visual para Farmácia Meira com lettering em ACM verde e iluminação LED integrada.",
+                    details: [
+                        "Material: ACM (Aluminium Composite Material)",
+                        "Cor: Verde corporativo",
+                        "Iluminação: LED integrado",
+                        "Instalação: Estrutura metálica"
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Fachada Institucional",
+                    category: "Fachadas Institucionais",
+                    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-mIiOOEhNTFdFSC2xzKqVSRBwhctN9p.png",
+                    description: "Revestimento completo em ACM preto com design arquitetônico moderno e acabamento premium para edifício institucional.",
+                    details: [
+                        "Material: ACM preto fosco",
+                        "Área: 200m² de fachada",
+                        "Design: Arquitetônico moderno",
+                        "Garantia: 10 anos"
+                    ]
+                }
+            ]
+        };
+
+        // Load content from localStorage
+        function loadContent() {
+            try {
+                const savedContent = localStorage.getItem('metalPrintContent');
+                if (savedContent) {
+                    siteContent = JSON.parse(savedContent);
+                }
+            } catch (error) {
+                console.warn('Error loading content from localStorage:', error);
+            }
+            updateDisplayContent();
+        }
+
+        // Save content to localStorage
+        function saveContent() {
+            try {
+                localStorage.setItem('metalPrintContent', JSON.stringify(siteContent));
+                showSaveMessage();
+                return true;
+            } catch (error) {
+                console.error('Error saving content to localStorage:', error);
+                return false;
+            }
+        }
+
+        // Show save message
+        function showSaveMessage() {
+            const saveMessage = document.getElementById('save-message');
+            if (saveMessage) {
+                saveMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    saveMessage.classList.add('hidden');
+                }, 3000);
+            }
+        }
+
+        // Update display content
+        function updateDisplayContent() {
+            // Update hero description
+            const heroDisplay = document.getElementById('hero-description-display');
+            if (heroDisplay) {
+                heroDisplay.innerHTML = siteContent.heroDescription
+                    .replace(/ACM de alta qualidade/g, '<span class="text-blue-400 font-semibold">ACM de alta qualidade</span>')
+                    .replace(/adesivos personalizados/g, '<span class="text-blue-400 font-semibold">adesivos personalizados</span>')
+                    .replace(/recortes de precisão em metal e outros materiais/g, '<span class="text-blue-400 font-semibold">recortes de precisão em metal e outros materiais</span>');
+            }
+
+            // Update about description
+            const aboutDisplay = document.getElementById('about-description-display');
+            if (aboutDisplay) {
+                aboutDisplay.textContent = siteContent.aboutDescription;
+            }
+
+            // Update portfolio
+            updatePortfolioDisplay();
+            updateAdminPortfolioGrid();
+            updatePortfolioCount();
+        }
+
+        // Update portfolio display
+        function updatePortfolioDisplay() {
+            const portfolioDisplay = document.getElementById('portfolio-display');
+            if (!portfolioDisplay) return;
+
+            portfolioDisplay.innerHTML = '';
+
+            siteContent.portfolioItems.forEach((item, index) => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item cursor-pointer transition-all duration-300';
+                portfolioItem.onclick = () => openModal(index);
+                
+                portfolioItem.innerHTML = `
+                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                            
+                            <div class="absolute top-4 left-4 bg-blue-500/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+                                ${item.category}
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">
+                                ${item.title}
+                            </h3>
+                            <p class="text-gray-400 leading-relaxed">${item.description}</p>
+                        </div>
+                    </div>
+                `;
+                
+                portfolioDisplay.appendChild(portfolioItem);
+            });
+        }
+
+        // Update admin portfolio grid
+        function updateAdminPortfolioGrid() {
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            if (!portfolioGrid) return;
+
+            portfolioGrid.innerHTML = '';
+
+            siteContent.portfolioItems.forEach(item => {
+                const gridItem = document.createElement('div');
+                gridItem.className = 'bg-slate-700/50 rounded-lg p-4 border border-blue-500/20';
+                
+                gridItem.innerHTML = `
+                    <div class="relative h-32 mb-3 rounded-lg overflow-hidden">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-white font-semibold mb-2 truncate">${item.title}</h3>
+                    <p class="text-gray-300 text-sm mb-3 line-clamp-2">${item.description}</p>
+                    <div class="flex gap-2">
+                        <button onclick="editProject(${item.id})" class="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1">
+                            <i data-lucide="edit" class="w-3 h-3"></i>
+                            Editar
+                        </button>
+                        <button onclick="deleteProject(${item.id})" class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg transition-colors">
+                            <i data-lucide="trash-2" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                `;
+                
+                portfolioGrid.appendChild(gridItem);
+            });
+
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        // Update portfolio count
+        function updatePortfolioCount() {
+            const countElement = document.getElementById('portfolio-count');
+            if (countElement) {
+                countElement.textContent = siteContent.portfolioItems.length;
+            }
+        }
+
+        // Admin authentication
+        function showAdminLogin() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            document.getElementById('admin-login-modal').classList.add('flex');
+        }
+
+        function hideAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-login-modal').classList.remove('flex');
+            document.getElementById('admin-password').value = '';
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function showAdminPanel() {
+            document.getElementById('admin-panel').classList.remove('admin-hidden');
+            document.getElementById('admin-panel').classList.add('admin-visible');
+            document.getElementById('main-content').style.display = 'none';
+            
+            // Load admin content
+            document.getElementById('hero-description').value = siteContent.heroDescription;
+            document.getElementById('about-description').value = siteContent.aboutDescription;
+            updateAdminPortfolioGrid();
+            updatePortfolioCount();
+        }
+
+        function hideAdminPanel() {
+            document.getElementById('admin-panel').classList.add('admin-hidden');
+            document.getElementById('admin-panel').classList.remove('admin-visible');
+            document.getElementById('main-content').style.display = 'block';
+            isAdminAuthenticated = false;
+        }
+
+        // Project management
+        function addNewProject() {
+            currentEditingProject = {
+                id: Date.now(),
+                title: '',
+                category: '',
+                image: '/placeholder.svg?height=400&width=600',
+                description: '',
+                details: ['']
+            };
+            showProjectModal('Novo Projeto');
+        }
+
+        function editProject(id) {
+            const project = siteContent.portfolioItems.find(item => item.id === id);
+            if (project) {
+                currentEditingProject = { ...project };
+                showProjectModal('Editar Projeto');
+            }
+        }
+
+        function deleteProject(id) {
+            if (confirm('Tem certeza que deseja excluir este projeto?')) {
+                siteContent.portfolioItems = siteContent.portfolioItems.filter(item => item.id !== id);
+                updateDisplayContent();
+                saveContent();
+            }
+        }
+
+        function showProjectModal(title) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('project-edit-modal').classList.remove('hidden');
+            document.getElementById('project-edit-modal').classList.add('flex');
+            
+            // Fill form
+            document.getElementById('project-title').value = currentEditingProject.title;
+            document.getElementById('project-category').value = currentEditingProject.category;
+            document.getElementById('project-description').value = currentEditingProject.description;
+            
+            // Update image preview
+            const preview = document.getElementById('project-image-preview');
+            const placeholder = document.getElementById('upload-placeholder');
+            if (currentEditingProject.image && currentEditingProject.image !== '/placeholder.svg?height=400&width=600') {
+                preview.src = currentEditingProject.image;
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            } else {
+                preview.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+            
+            // Update details
+            updateProjectDetails();
+        }
+
+        function hideProjectModal() {
+            document.getElementById('project-edit-modal').classList.add('hidden');
+            document.getElementById('project-edit-modal').classList.remove('flex');
+            currentEditingProject = null;
+        }
+
+        function updateProjectDetails() {
+            const detailsContainer = document.getElementById('project-details');
+            detailsContainer.innerHTML = '';
+            
+            currentEditingProject.details.forEach((detail, index) => {
+                const detailDiv = document.createElement('div');
+                detailDiv.className = 'flex gap-2';
+                detailDiv.innerHTML = `
+                    <input 
+                        type="text" 
+                        value="${detail}" 
+                        onchange="updateDetail(${index}, this.value)"
+                        class="flex-1 px-4 py-3 bg-white/10 border border-blue-500/30 rounded-xl text-white placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 backdrop-blur-sm"
+                        placeholder="Ex: Material: ACM premium"
+                    >
+                    <button 
+                        type="button" 
+                        onclick="removeDetail(${index})"
+                        class="px-3 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl transition-colors"
+                    >
+                        <i data-lucide="x" class="w-3 h-3"></i>
+                    </button>
+                `;
+                detailsContainer.appendChild(detailDiv);
+            });
+            
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        function addDetail() {
+            currentEditingProject.details.push('');
+            updateProjectDetails();
+        }
+
+        function updateDetail(index, value) {
+            currentEditingProject.details[index] = value;
+        }
+
+        function removeDetail(index) {
+            currentEditingProject.details.splice(index, 1);
+            updateProjectDetails();
+        }
+
+        function saveProject() {
+            // Validate form
+            const title = document.getElementById('project-title').value.trim();
+            const category = document.getElementById('project-category').value.trim();
+            const description = document.getElementById('project-description').value.trim();
+            
+            if (!title || !category || !description) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Update project
+            currentEditingProject.title = title;
+            currentEditingProject.category = category;
+            currentEditingProject.description = description;
+            
+            // Filter empty details
+            currentEditingProject.details = currentEditingProject.details.filter(detail => detail.trim() !== '');
+            
+            // Add or update project
+            const existingIndex = siteContent.portfolioItems.findIndex(item => item.id === currentEditingProject.id);
+            if (existingIndex >= 0) {
+                siteContent.portfolioItems[existingIndex] = currentEditingProject;
+            } else {
+                siteContent.portfolioItems.push(currentEditingProject);
+            }
+            
+            updateDisplayContent();
+            saveContent();
+            hideProjectModal();
+        }
+
+        // Image upload handling
+        function handleImageUpload(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentEditingProject.image = e.target.result;
+                    
+                    // Update preview
+                    const preview = document.getElementById('project-image-preview');
+                    const placeholder = document.getElementById('upload-placeholder');
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Portfolio modal functionality
+        function openModal(index) {
+            const modal = document.getElementById('portfolio-modal');
+            const modalContent = document.getElementById('modal-content');
+            const item = siteContent.portfolioItems[index];
+
+            modalContent.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-80 object-cover rounded-xl">
+                    </div>
+                    <div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium mb-4">
+                                ${item.category}
+                            </span>
+                            <h3 class="text-2xl font-bold text-white mb-4">${item.title}</h3>
+                            <p class="text-gray-300 leading-relaxed mb-6">${item.description}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-bold text-blue-300 mb-4">Especificações Técnicas</h4>
+                            <ul class="space-y-2">
+                                ${item.details.map(detail => `
+                                    <li class="flex items-center gap-2 text-gray-300">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                        ${detail}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="#contato" onclick="closeModal()" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300">
+                                Solicitar Orçamento Similar
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            
+            // Reinitialize icons in modal
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('portfolio-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Loading screen management
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            if (loadingScreen && mainContent) {
+                loadingScreen.classList.add('loading-fade-out');
+                mainContent.style.opacity = '1';
+                
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    initializeAnimations();
+                }, 500);
+            }
+        }
+
+        // Animation on scroll
+        function initializeAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load content
+            loadContent();
+            
+            // Initialize icons
+            lucide.createIcons();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            });
+
+            // Admin access buttons
+            const adminAccessBtn = document.getElementById('admin-access-btn');
+            const mobileAdminBtn = document.getElementById('mobile-admin-btn');
+            
+            if (adminAccessBtn) {
+                adminAccessBtn.addEventListener('click', showAdminLogin);
+            }
+            if (mobileAdminBtn) {
+                mobileAdminBtn.addEventListener('click', showAdminLogin);
+            }
+
+            // Admin login form
+            const adminLoginForm = document.getElementById('admin-login-form');
+            if (adminLoginForm) {
+                adminLoginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const password = document.getElementById('admin-password').value;
+                    
+                    if (password === ADMIN_PASSWORD) {
+                        isAdminAuthenticated = true;
+                        hideAdminLogin();
+                        showAdminPanel();
+                    } else {
+                        document.getElementById('login-error').classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Cancel admin login
+            const cancelAdminLogin = document.getElementById('cancel-admin-login');
+            if (cancelAdminLogin) {
+                cancelAdminLogin.addEventListener('click', hideAdminLogin);
+            }
+
+            // Admin panel controls
+            const logoutAdmin = document.getElementById('logout-admin');
+            if (logoutAdmin) {
+                logoutAdmin.addEventListener('click', hideAdminPanel);
+            }
+
+            const saveAllContent = document.getElementById('save-all-content');
+            if (saveAllContent) {
+                saveAllContent.addEventListener('click', function() {
+                    siteContent.heroDescription = document.getElementById('hero-description').value;
+                    siteContent.aboutDescription = document.getElementById('about-description').value;
+                    updateDisplayContent();
+                    saveContent();
+                });
+            }
+
+            const previewSite = document.getElementById('preview-site');
+            if (previewSite) {
+                previewSite.addEventListener('click', hideAdminPanel);
+            }
+
+            const quickPreview = document.getElementById('quick-preview');
+            if (quickPreview) {
+                quickPreview.addEventListener('click', hideAdminPanel);
+            }
+
+            const quickSave = document.getElementById('quick-save');
+            if (quickSave) {
+                quickSave.addEventListener('click', function() {
+                    siteContent.heroDescription = document.getElementById('hero-description').value;
+                    siteContent.aboutDescription = document.getElementById('about-description').value;
+                    updateDisplayContent();
+                    saveContent();
+                });
+            }
+
+            // Project management
+            const addNewProjectBtn = document.getElementById('add-new-project');
+            if (addNewProjectBtn) {
+                addNewProjectBtn.addEventListener('click', addNewProject);
+            }
+
+            const closeProjectModal = document.getElementById('close-project-modal');
+            if (closeProjectModal) {
+                closeProjectModal.addEventListener('click', hideProjectModal);
+            }
+
+            const cancelProjectEdit = document.getElementById('cancel-project-edit');
+            if (cancelProjectEdit) {
+                cancelProjectEdit.addEventListener('click', hideProjectModal);
+            }
+
+            const addDetailBtn = document.getElementById('add-detail');
+            if (addDetailBtn) {
+                addDetailBtn.addEventListener('click', addDetail);
+            }
+
+            // Project form
+            const projectForm = document.getElementById('project-form');
+            if (projectForm) {
+                projectForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    saveProject();
+                });
+            }
+
+            // Image upload
+            const projectImageInput = document.getElementById('project-image-input');
+            if (projectImageInput) {
+                projectImageInput.addEventListener('change', function(e) {
+                    if (e.target.files[0]) {
+                        handleImageUpload(e.target.files[0]);
+                    }
+                });
+            }
+
+            // Drag and drop for image upload
+            const uploadArea = document.querySelector('.file-upload-area');
+            if (uploadArea) {
+                uploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('dragover');
+                });
+
+                uploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                });
+
+                uploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files[0]) {
+                        handleImageUpload(files[0]);
+                    }
+                });
+            }
+
+            // Close modal button
+            const closeModalBtn = document.getElementById('close-modal');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                        navbar.style.backdropFilter = 'blur(20px)';
+                        navbar.style.borderBottom = '1px solid rgba(59, 130, 246, 0.2)';
+                    } else {
+                        navbar.style.background = 'transparent';
+                        navbar.style.backdropFilter = 'none';
+                        navbar.style.borderBottom = 'none';
+                    }
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Close modal when clicking outside
+            const portfolioModal = document.getElementById('portfolio-modal');
+            if (portfolioModal) {
+                portfolioModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Close admin login when clicking outside
+            const adminLoginModal = document.getElementById('admin-login-modal');
+            if (adminLoginModal) {
+                adminLoginModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        hideAdminLogin();
+                    }
+                });
+            }
+
+            // Close project modal when clicking outside
+            const projectEditModal = document.getElementById('project-edit-modal');
+            if (projectEditModal) {
+                projectEditModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        hideProjectModal();
+                    }
+                });
+            }
+
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const successMessage = document.getElementById('success-message');
+                    
+                    // Show loading state
+                    if (submitButton) {
+                        submitButton.innerHTML = 'Enviando...';
+                        submitButton.disabled = true;
+                    }
+                    
+                    // Submit form
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            if (successMessage) {
+                                successMessage.classList.remove('hidden');
+                            }
+                            this.reset();
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                if (successMessage) {
+                                    successMessage.classList.add('hidden');
+                                }
+                            }, 5000);
+                        } else {
+                            throw new Error('Erro no envio');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Erro ao enviar mensagem. Tente novamente ou entre em contato pelo WhatsApp.');
+                    })
+                    .finally(() => {
+                        // Reset button
+                        if (submitButton) {
+                            submitButton.innerHTML = 'Solicitar Orçamento';
+                            submitButton.disabled = false;
+                        }
+                    });
+                });
+            }
+        });
+
+        // Loading screen management
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                hideLoadingScreen();
+            }, 1500);
+        });
+
+        // Fallback for loading screen
+        setTimeout(() => {
+            hideLoadingScreen();
+        }, 3000);
+
+        // Global functions for inline event handlers
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.editProject = editProject;
+        window.deleteProject = deleteProject;
+        window.updateDetail = updateDetail;
+        window.removeDetail = removeDetail;
+        window.addDetail = addDetail;
+    </script>
+</body>
+</html>
